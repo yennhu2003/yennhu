@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiệu ứng Gà Con Rơi 🐣</title>
+    <style>
+        body {
+            background-color: skyblue;
+            overflow: hidden;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Hiển thị theo cột */
+            font-size: 24px;
+            position: relative;
+        }
+
+        .header {
+            position: absolute;
+            top: 10px;
+            left: 10px; /* Dịch nội dung sang bên trái */
+            z-index: 10;
+            font-weight: bold;
+        }
+
+        .falling-chick {
+            position: absolute;
+            top: -50px;
+            font-size: 30px; /* Kích thước gà con */
+            animation: fall linear;
+        }
+
+        @keyframes fall {
+            0% {
+                top: -50px;
+                opacity: 1;
+            }
+            100% {
+                top: 100vh;
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">🐥 Chào mừng đến với trang web của dươngg ! 🐥
+        <h1><strong> Gioi thieu ban than</strong></h1> 
+        <h2><mark>Thong tin ca nhan </mark></h2>
+        <p> Ho va ten: Nguyen Thi Thuy Duong</p>
+        <p> Sinh nam: 2007</p>
+        <h2><mark>So thich</mark></h2>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            function createFallingChick() {
+                let chick = document.createElement("div");
+                chick.textContent = "🐣"; // Sử dụng emoji gà con
+                chick.classList.add("falling-chick");
+
+                document.body.appendChild(chick);
+
+                let startPosition = Math.random() * window.innerWidth;
+                let duration = Math.random() * 3 + 2; // Thời gian rơi từ 2-5 giây
+
+                chick.style.left = startPosition + "px";
+                chick.style.animationDuration = `${duration}s`;
+
+                setTimeout(() => {
+                    chick.remove();
+                }, duration * 1000);
+            }
+
+            setInterval(createFallingChick, 500); // Tạo gà con mới mỗi 0.5 giây
+        });
+    </script>
+
+</body>
+</html>
