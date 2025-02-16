@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiệu ứng Emoji Rơi 🎀🦢✨</title>
+    <style>
+        body {
+            background-color: lightpink;
+            overflow: hidden;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: flex-start; /* Căn nội dung lên trên */
+            align-items: flex-start; /* Căn nội dung sang trái */
+            flex-direction: column;
+            font-size: 24px;
+            position: relative;
+        }
+
+        .header {
+            position: absolute;
+            top: 10px; /* Đưa nội dung lên đầu */
+            left: 10px; /* Đưa nội dung sang trái */
+            z-index: 10;
+            font-weight: bold;
+        }
+
+        .falling-chick {
+            position: absolute;
+            top: -50px;
+            font-size: 30px; /* Kích thước emoji */
+            animation: fall linear;
+        }
+
+        @keyframes fall {
+            0% {
+                top: -50px;
+                opacity: 1;
+            }
+            100% {
+                top: 100vh;
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">🎀 Chào mừng đến với trang web của nguyên! 🦢✨
+      <h1><strong> Giới thiệu bản thân</strong></hl>
+      <h2><mark>Thông tin cá nhân </mark></h2>
+      <p> Họ và tên: Nguyễn Ngọc Thảo Nguyên</p> 
+     <p> Sinh năm: 2007</p> <p> Quê quán: Tiền Giang</p> 
+      <h2><mark>Sở thích</mark></h2> <p>coi phim, vẽ tranh, đọc sách, ••.</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            function createFallingChick() {
+                let chick = document.createElement("div");
+                chick.textContent = "🎀🦢✨"; // Sử dụng emoji
+                chick.classList.add("falling-chick");
+
+                document.body.appendChild(chick);
+
+                let startPosition = Math.random() * window.innerWidth;
+                let duration = Math.random() * 3 + 2; // Thời gian rơi từ 2-5 giây
+
+                chick.style.left = startPosition + "px";
+                chick.style.animationDuration = `${duration}s`;
+
+                setTimeout(() => {
+                    chick.remove();
+                }, duration * 1000);
+            }
+
+            setInterval(createFallingChick, 500); // Tạo emoji mới mỗi 0.5 giây
+        });
+    </script>
+
+</body>
+</html>
+
+
+
