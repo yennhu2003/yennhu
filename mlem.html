@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiệu Ứng Trái Cây Rơi & Avatar</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden; /* Ẩn thanh cuộn */
+            height: 100vh;
+            background: linear-gradient(to bottom, #ffefd5, #ffdab9); /* Nền gradient */
+            font-family: 'Arial', sans-serif;
+            position: relative;
+        }
+
+        .content {
+            position: absolute;
+            top: 20px; /* Đưa nội dung lên trên cùng */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            text-align: center;
+            color: #4a4a4a;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .avatar-container {
+            position: absolute;
+            top: 40%; /* Dịch avatar lên trên một chút */
+            left: 40%; /* Dịch avatar sang trái */
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .fruit {
+            position: absolute;
+            top: -60px; /* Bắt đầu từ trên cùng */
+            width: 40px;
+            height: 40px;
+            pointer-events: none; /* Không cho tương tác với trái cây */
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<h2><strong> Giới thiệu bản thân </strong></h2>
+<h2><mark> Thông tin cá nhân </mark></h2>
+<p> Họ và tên : Huỳnh Ngọc Yến Như </p>
+<p> Sinh năm : 2007</p>
+<p> quê quán : Bà Rịa - Vũng Tàu
+<h2><mark> Sở Thích </mark></h2>
+<p> Đọc sách, truyện tiểu thuyết, nghe nhạc </p>
+<p> thể thao: bơi lội, cầu lông</p>
+
+
+    <div class="content">Chào mừng bạn đến với trang web của tôi! 🍎🍊🍉</div>
+
+    <div class="avatar-container">
+        <img class="avatar" src="C:\Users\huynh\OneDrive\Pictures\Screenshots\476484366_676533061379673_3861566907695917543_n.jpg" alt="Avatar">
+    </div>
+
+    <script>
+        // Danh sách các loại trái cây (emoji hoặc hình ảnh)
+        const fruits = [
+            'https://cdn-icons-png.flaticon.com/512/415/415682.png', // Táo
+            'https://cdn-icons-png.flaticon.com/512/415/415740.png', // Cam
+            'https://cdn-icons-png.flaticon.com/512/415/415735.png', // Dâu tây
+            'https://cdn-icons-png.flaticon.com/512/415/415731.png', // Chuối
+            'https://cdn-icons-png.flaticon.com/512/2909/2909761.png' // Dưa hấu
+        ];
+
+        function createFruit() {
+            const fruit = document.createElement('div');
+            fruit.className = 'fruit';
+
+            // Chọn ngẫu nhiên một loại trái cây
+            const randomFruit = fruits[Math.floor(Math.random() * fruits.length)];
+            fruit.style.background = `url(${randomFruit}) no-repeat center/contain`;
+
+            // Kích thước ngẫu nhiên (30px - 60px)
+            const size = Math.random() * 30 + 30;
+            fruit.style.width = `${size}px`;
+            fruit.style.height = `${size}px`;
+
+            // Vị trí rơi ngẫu nhiên theo chiều ngang
+            fruit.style.left = Math.random() * window.innerWidth + 'px';
+
+            // Tốc độ rơi ngẫu nhiên (5s - 12s)
+            fruit.style.animationDuration = `${Math.random() * 7 + 5}s`;
+
+            document.body.appendChild(fruit);
+
+            // Xóa trái cây sau khi rơi xong
+            setTimeout(() => fruit.remove(), 13000);
+        }
+
+        // Tạo trái cây liên tục mỗi 300ms
+        setInterval(createFruit, 300);
+    </script>
+
+</body>
+
+</html>
